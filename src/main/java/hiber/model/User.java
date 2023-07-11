@@ -71,14 +71,4 @@ public class User {
       this.car = car;
       return car;
    }
-
-   @Override
-   public String toString() {
-      return "User {" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              '}';
-   }
 }
