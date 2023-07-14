@@ -1,7 +1,16 @@
 package hiber.config;
 
+import hiber.dao.CarDao;
+import hiber.dao.CarDaoImpl;
+import hiber.dao.UserDao;
+import hiber.dao.UserDaoImp;
 import hiber.model.Car;
 import hiber.model.User;
+import hiber.service.CarService;
+import hiber.service.CarServiceImpl;
+import hiber.service.UserService;
+import hiber.service.UserServiceImp;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -54,5 +63,15 @@ public class AppConfig {
       HibernateTransactionManager transactionManager = new HibernateTransactionManager();
       transactionManager.setSessionFactory(getSessionFactory().getObject());
       return transactionManager;
+   }
+
+   @Bean
+   public CarDao getCarDao(SessionFactory sessionFactory) {
+      return new CarDaoImpl(sessionFactory);
+   }
+
+   @Bean
+   public CarService getCarService(CarDao carDao) {
+      return new CarServiceImpl(carDao);
    }
 }
